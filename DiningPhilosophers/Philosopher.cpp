@@ -78,9 +78,10 @@ void Philosopher::act()
 		{
 			if (this->left->isAvailable() && !this->hasLeft)
 			{
+				std::cout << this->id << " has taken fork " << this->left->getPriority() << std::endl;
 				takeLeft();
 				this->status = "Philosopher " + std::to_string(this->id) + " has taken fork " + std::to_string(this->left->getPriority());
-				continue;
+				//continue;
 			}
 			else if(!this->left->isAvailable() && this->hasLeft)
 			{
@@ -88,7 +89,7 @@ void Philosopher::act()
 				{
 					takeRight();
 					this->status = "Philosopher " + std::to_string(this->id) + " has taken fork " + std::to_string(this->right->getPriority());
-					continue;
+					//continue;
 				}
 				else if (!this->right->isAvailable() && this->hasRight)
 				{
@@ -99,23 +100,24 @@ void Philosopher::act()
 				{
 					this->status = "Philosopher " + std::to_string(this->id) + " is waiting";
 					this->timeWaiting += 0.1;
-					continue;
+					//continue;
 				}
 			}
 			else 
 			{
 				this->status = "Philosopher " + std::to_string(this->id) + " is waiting";
 				this->timeWaiting += 0.1;
-				continue;
+				//continue;
 			}
 		}
 		else
 		{
 			if (this->right->isAvailable() && !this->hasRight)
 			{
+				std::cout << this->id << " has taken fork " << this->right->getPriority() << std::endl;
 				takeRight();
 				this->status = "Philosopher " + std::to_string(this->id) + " has taken fork " + std::to_string(this->right->getPriority());
-				continue;
+				//continue;
 			}
 			else if (!this->right->isAvailable() && this->hasRight)
 			{
@@ -123,7 +125,7 @@ void Philosopher::act()
 				{
 					takeLeft();
 					this->status = "Philosopher " + std::to_string(this->id) + " has taken fork " + std::to_string(this->left->getPriority());
-					continue;
+					//continue;
 				}
 				else if (!this->left->isAvailable() && this->hasLeft)
 				{
@@ -134,16 +136,17 @@ void Philosopher::act()
 				{
 					this->status = "Philosopher " + std::to_string(this->id) + " is waiting";
 					this->timeWaiting += 0.1;
-					continue;
+					//continue;
 				}
 			}
 			else
 			{
 				this->status = "Philosopher " + std::to_string(this->id) + " is waiting";
 				this->timeWaiting += 0.1;
-				continue;
+				//continue;
 			}
 		}
+		//std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 }
 

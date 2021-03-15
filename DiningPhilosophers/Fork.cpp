@@ -13,11 +13,25 @@ int Fork::getPriority()
 bool Fork::isAvailable()
 {
 	std::lock_guard<std::mutex> lock(mtx);
-	return this->availability;
+	return this->available;
 }
 
 void Fork::setAvailability(bool set)
 {
 	std::lock_guard<std::mutex> lock(mtx);
-	this->availability = set;
+	this->available = set;
+}
+
+bool Fork::takeIfAvailable()
+{
+	std::lock_guard<std::mutex> lock(mtx);
+	if (this->available)
+	{
+		this->available = false;
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
 }

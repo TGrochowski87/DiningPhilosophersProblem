@@ -23,6 +23,8 @@ public:
 	void setLeftFork(Fork*);
 	Fork* getLeftFork();
 
+	void tryToTakeLeft();
+
 	void takeLeft();
 	void takeRight();
 

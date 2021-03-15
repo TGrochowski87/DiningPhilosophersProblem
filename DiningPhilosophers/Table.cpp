@@ -22,37 +22,40 @@ void Table::runSimulation()
 		p->start();
 	}
 
-	const auto predicate = [](Philosopher* p) {
+	/*const auto predicate = [](Philosopher* p) {
 		return !p->getStatus().empty();
 	};
-	while (!std::all_of(philosophers.begin(), philosophers.end(), predicate));
+	while (!std::all_of(philosophers.begin(), philosophers.end(), predicate));*/
 
-	//bool isEveryoneReady = false;
-	//while (!isEveryoneReady)
-	//{
-	//	for (Philosopher* p : this->philosophers)
-	//	{
-	//		if (p->getStatus().empty())
-	//		{
-	//			isEveryoneReady = true;
-	//		}
-	//		else 
-	//		{
-	//			isEveryoneReady = false;
-	//			break;
-	//		}
-	//	}
-	//}
+	bool isEveryoneReady = false;
+	while (!isEveryoneReady)
+	{
+		for (Philosopher* p : this->philosophers)
+		{
+			if (!p->getStatus().empty())
+			{
+				isEveryoneReady = true;
+			}
+			else 
+			{
+				std::cout << p->getId() << std::endl;
+				isEveryoneReady = false;
+				break;
+			}
+		}
+	}
+	std::cout << std::endl;
+	std::cout << std::endl;
 
 	showStatusThread = std::make_unique<std::thread>([this]() {
 		while (this->dinerPersists)
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			for (Philosopher* p : this->philosophers)
 			{
 				std::cout << p->getStatus() << std::endl;
 			}
 			std::cout << "\n------------------------------------------" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}
 		});
 }

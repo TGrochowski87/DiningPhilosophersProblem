@@ -9,9 +9,10 @@ public:
 	int getPriority();
 	bool isAvailable();
 	void setAvailability(bool);
+	bool takeIfAvailable();
 
 private:
-	bool availability;
+	bool available = true;
 	int priority;
 
 	std::mutex mtx;
