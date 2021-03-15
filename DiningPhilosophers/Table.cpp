@@ -22,11 +22,6 @@ void Table::runSimulation()
 		p->start();
 	}
 
-	/*const auto predicate = [](Philosopher* p) {
-		return !p->getStatus().empty();
-	};
-	while (!std::all_of(philosophers.begin(), philosophers.end(), predicate));*/
-
 	bool isEveryoneReady = false;
 	while (!isEveryoneReady)
 	{
@@ -38,14 +33,11 @@ void Table::runSimulation()
 			}
 			else 
 			{
-				std::cout << p->getId() << std::endl;
 				isEveryoneReady = false;
 				break;
 			}
 		}
 	}
-	std::cout << std::endl;
-	std::cout << std::endl;
 
 	showStatusThread = std::make_unique<std::thread>([this]() {
 		while (this->dinerPersists)

@@ -7,7 +7,6 @@ public:
 	Fork(int);
 
 	int getPriority();
-	bool isAvailable();
 	void setAvailability(bool);
 	bool takeIfAvailable();
 

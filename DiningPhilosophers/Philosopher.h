@@ -18,15 +18,8 @@ public:
 	void stop();
 
 	void setRightFork(Fork*);
-	Fork* getRightFork();
 
 	void setLeftFork(Fork*);
-	Fork* getLeftFork();
-
-	void tryToTakeLeft();
-
-	void takeLeft();
-	void takeRight();
 
 	void releaseLeft();
 	void releaseRight();
